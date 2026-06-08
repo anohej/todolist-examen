@@ -1,0 +1,103 @@
+
+<form method="POST" class="form">
+  <span class="input-span">
+    <label class="label">Username</label>
+    <input type="text" name="username" required />
+  </span>
+
+  <span class="input-span">
+    <label class="label">Password</label>
+    <input type="password" name="password" required />
+  </span>
+
+  <input class="submit" type="submit" value="Log in" />
+</form>
+<p> dont have an account? <a href="{{ url_for('register') }}">create an account</a></p>
+
+  </form>
+</form>
+<style>
+body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f8f6f4, #f1ece7);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  margin: 0;
+}
+
+.form {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(10px);
+  padding: 35px;
+  border-radius: 25px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  width: 100%;
+  max-width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+}
+
+.input-span {
+  display: flex;
+  flex-direction: column;
+}
+
+.label {
+  color: #6d5964;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.form input {
+  background: #faf7f5;
+  border: 2px solid #ede5df;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form input:focus {
+  border-color: #d8c1d1;
+  box-shadow: 0 0 0 4px rgba(216, 193, 209, 0.2);
+}
+
+.submit {
+  background: #d8c1d1;
+  color: #4f3d47;
+  border: none;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit:hover {
+  background: #c8afbf;
+  transform: translateY(-2px);
+}
+
+p {
+  margin-top: 20px;
+  color: #8a7b85;
+}
+
+a {
+  color: #a17893;
+  text-decoration: none;
+  font-weight: 600;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+
+</style>

@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Tasks</title>
+  <style>
+    body {
+  font-family: 'Segoe UI', sans-serif;
+  background: linear-gradient(135deg, #f8f6f4, #f1ece7);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px;
+  margin: 0;
+  min-height: 100vh;
+}
+
+h1 {
+  color: #5e4b56;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+p {
+  color: #8a7b85;
+  margin-bottom: 30px;
+}
+
+.form {
+  background: rgba(255,255,255,0.8);
+  backdrop-filter: blur(10px);
+  padding: 25px;
+  border-radius: 25px;
+  width: 100%;
+  max-width: 500px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-bottom: 30px;
+}
+
+.form input,
+.form textarea {
+  background: #faf7f5;
+  border: 2px solid #ede5df;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  outline: none;
+  transition: 0.3s;
+}
+
+.form input:focus,
+.form textarea:focus {
+  border-color: #d8c1d1;
+}
+
+.form textarea {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.submit {
+  background: #d8c1d1;
+  color: #4f3d47;
+  border: none;
+  border-radius: 15px;
+  padding: 14px;
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.submit:hover {
+  background: #c9aec1;
+}
+
+.task {
+  background: rgba(255,255,255,0.85);
+  backdrop-filter: blur(10px);
+  width: 100%;
+  max-width: 500px;
+  padding: 20px;
+  border-radius: 25px;
+  margin-bottom: 15px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.07);
+}
+
+.task h3 {
+  color: #5e4b56;
+  margin-top: 0;
+}
+
+.task p {
+  color: #8a7b85;
+}
+
+.done {
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.actions {
+  margin-top: 15px;
+}
+
+.actions a {
+  text-decoration: none;
+  padding: 8px 14px;
+  border-radius: 12px;
+  font-size: 14px;
+  margin-right: 10px;
+  transition: 0.3s;
+}
+
+.actions a:first-child {
+  background: #e4d8dd;
+  color: #5e4b56;
+}
+
+.actions a:last-child {
+  background: #f5d9d9;
+  color: #8b4d4d;
+}
+
+.actions a:hover {
+  opacity: 0.8;
+}
+
+
+.nav-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 16px;
+  border-radius: 12px;
+  background: #d8c1d1;
+  color: #4f3d47;
+  text-decoration: none;
+  font-weight: 600;
+  transition: 0.3s;
+}
+
+.nav-btn:hover {
+  background: #c8afbf;
+  transform: translateY(-2px);
+}
+  </style>
+</head>
+<body>
+
+  <h1>My Tasks</h1>
+
+    <h1>Hei {{ username }}, hva skal vi gjøre i dag?</h1>
+
+  <form method="POST" action="/add" class="form">
+    <input type="text" name="title" placeholder="Task title" required>
+    <textarea name="description" placeholder="Description"></textarea>
+    <input class="submit" type="submit" value="Add Task">
+  </form>
+
+ 
+  {% for task in tasks %}
+    <div class="task">
+      <h3 class="{% if task.is_done %}done{% endif %}">
+        {{ task.title }}
+      </h3>
+      <p class="{% if task.is_done %}done{% endif %}">
+        {{ task.description }}
+      </p>
+
+      <div class="actions">
+        <a href="/done/{{ task.id }}">Done</a>
+        <a href="/delete/{{ task.id }}">Delete</a>
+      </div>
+    </div>
+  {% endfor %}
+
+
+  <a href="/faq" class="nav-btn">FAQ</a>
+
+</body>
+</html>
