@@ -205,3 +205,22 @@ python app.py
 ```
 
 Åpne nettleseren og gå til: `http://localhost:5000`
+
+
+
+
+
+### feil meldinger
+
+FAQ ga 404
+Rutene for /faq, /faq/add og /faq/delete lå etter app.run() i app.py, så Flask registrerte dem aldri. Fix: flytte app.run() til bunnen.
+2. TemplateNotFound: tos_popup.html (to ganger)
+Første gang manglet selve filen. Andre gang fantes filen men het tos.html, ikke tos_popup.html. Fix: bytte til riktig filnavn i {% include %}.
+3. TOS-popupen dukket ikke opp
+{% include 'tos.html' %} manglet helt i index.html og faq.html, så popupen ble aldri lastet inn. Fix: legge til include-linjen etter <body>.
+4. Register-siden så annerledes ut enn login
+Register brukte andre CSS klasser og hadde ikke samme struktur som login. Fix: skrive om register.html med samme stil.
+5. Manglende " i progressbar
+Style attributtet på den innerste progressbar diven manglet avsluttende ", som ga rød strek i VS Code. Fix: legge til " før >.
+6. Rød strek på progressbar (ikke en ekte feil)
+VS Code skjønner ikke Jinja2-syntax som {{ percent }} inne i style-attributter og markerer det som feil. Det er bare en editor-advarsel og koden fungerer fint i Flask.
